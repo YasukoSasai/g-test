@@ -3,9 +3,6 @@ package com.example.demo.app.inquiry;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.example.demo.entity.Inquiry;
-import com.example.demo.service.InquiryService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.example.demo.entity.Inquiry;
+import com.example.demo.entity.Question;
+import com.example.demo.service.InquiryService;
+
 
 @Controller
 @RequestMapping("/inquiry")
@@ -30,25 +32,25 @@ public class InquiryController {
 	
 	@GetMapping
 	public String index(Model model) {
-		List<Inquiry> list = inquiryService.getAll();
-		
+		List<Inquiry> list = inquiryService.getAll();		
+
 		model.addAttribute("inquiryList", list);
 		model.addAttribute("title", "Inquiry Index");
 		
-		return "inquiry/index";
+		return "inquiry/index_boot";
 	}
 	
 	@GetMapping("form")
 	public String form(InquiryForm inquiryForm, Model model,
 			@ModelAttribute("complete") String complete) {
 		model.addAttribute("title", "Inquiry Form");
-		return "inquiry/form";
+		return "inquiry/form_boot";
 	}
 	
 	@PostMapping("form")
 	public String formGoBack(InquiryForm inquiryForm, Model model) {
 		model.addAttribute("title", "Inquiry Form");
-		return "inquiry/form";
+		return "inquiry/form_boot";
 	}
 	
 	@PostMapping("/confirm")
@@ -57,10 +59,10 @@ public class InquiryController {
 			Model model) {
 		if(result.hasErrors()) {
 			model.addAttribute("title", "Inquiry Form");
-			return "inquiry/form";
+			return "inquiry/form_boot";
 		}
 		model.addAttribute("title", "Confirm Page");
-		return "inquiry/confirm";
+		return "inquiry/confirm_boot";
 	}
 
 	@PostMapping("/complete")
@@ -69,7 +71,7 @@ public class InquiryController {
 			Model model,
 			RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
-			return "inquiry/form";
+			return "inquiry/form_boot";
 		}
 		Inquiry inquiry = new Inquiry();
 		inquiry.setName(inquiryForm.getName());
@@ -80,5 +82,14 @@ public class InquiryController {
 		inquiryService.save(inquiry);
 		redirectAttributes.addFlashAttribute("complete", "Registered!");
 		return "redirect:/inquiry/form";	
+	}	
+	
+	@GetMapping("question")
+	public String question(Model model) {
+		Question question = inquiryService.getQuestion(1, 1);
+		model.addAttribute("question", question);
+		model.addAttribute("title", "Question Page");
+		return "inquiry/question";
 	}
+
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}">Insert title here</title>
+</head>
+<body>
+<h1 th:text="${title}">title</h1>
+<div th:object="${question}">
+	<p th:text="*{id}"></p>
+    <p th:text="*{categoryId}"></p>
+	<p th:text="*{questionContent}"></p>
+	<p th:text="*{answer}"></p>
+	<p th:text="*{explanation}"></p>
+	<p th:text="*{choice1}"></p>
+	<p th:text="*{choice2}"></p>
+	<p th:text="*{choice3}"></p>
+	<p th:text="*{choice4}"></p>
+</div>
+</body>
+</html>

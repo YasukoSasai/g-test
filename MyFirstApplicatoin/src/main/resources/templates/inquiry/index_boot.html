@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="${title}">Starter Template for Bootstrap · Bootstrap</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
+    <link href="../example.css" rel="stylesheet">
+  </head>
+  <body>
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content">
+  <div class="container">
+    <span class="skiplink-text">Skip to main content</span>
+  </div>
+</a>
+
+ <div th:replace="~{block/header::headerA}"></div>  
+
+<main role="main" class="container">
+
+  <div class="starter-template">
+    <!-- <h1>Bootstrap starter template</h1> -->
+    <h1 th:text="${title}">Bootstrap スターターテンプレート</h1>
+    <!-- <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p> -->
+    <p class="lead">このドキュメントを使ってあらゆるプロジェクトを高速にスタートしましょう．<br> このテキストと基礎となる HTML ドキュメントが手に入ります.</p>
+  </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">contents</th>
+      <th scope="col">dateTime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="inquiry : ${inquiryList}">
+      <th scope="row" th:text="${inquiry.id}">1</th>
+		<td th:text="${inquiry.name}"></td>
+		<td th:text="${inquiry.email}"></td>
+		<td th:text="${inquiry.contents}"></td>
+		<td th:text="${inquiry.created}"></td>
+    </tr>
+  </tbody>
+</table>
+</main><!-- /.container -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script>
+  window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery-slim.min.js"><\/script>')
+</script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" th:href="@{/js/bootstrap.bundle.min.js}"></script><script src="/docs/4.5/assets/js/vendor/anchor.min.js"></script>
+<script src="/docs/4.5/assets/js/vendor/clipboard.min.js"></script>
+<script src="/docs/4.5/assets/js/vendor/bs-custom-file-input.min.js"></script>
+<script src="/docs/4.5/assets/js/src/application.js"></script>
+<script src="/docs/4.5/assets/js/src/search.js"></script>
+<script src="/docs/4.5/assets/js/src/ie-emulation-modes-warning.js"></script>
+  </body>
+</html>

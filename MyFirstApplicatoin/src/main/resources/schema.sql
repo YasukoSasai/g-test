@@ -7,3 +7,17 @@ CREATE TABLE inquiry
    created DATETIME NOT NULL,
    PRIMARY KEY(id)
 );
+
+CREATE TABLE questions
+(
+   id INT NOT NULL,
+   categoryId INT NOT NULL,
+   questionContent VARCHAR(1000) NOT NULL,
+   answer VARCHAR(1000) NOT NULL,
+   explanation VARCHAR(1000) NOT NULL,
+   choice1 VARCHAR(1000) NOT NULL,
+   choice2 VARCHAR(1000) NOT NULL,
+   choice3 VARCHAR(1000) NOT NULL,
+   choice4 VARCHAR(1000) NOT NULL,
+   PRIMARY KEY(id)
+);

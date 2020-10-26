@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Inquiry;
+import com.example.demo.entity.Question;
 
 @Repository
 public class InquiryDaoImpl implements InquiryDao {
@@ -51,6 +52,24 @@ public class InquiryDaoImpl implements InquiryDao {
 	public int updateInquiry(Inquiry inquiry) {
 		return jdbcTemplate.update("UPDATE inquiry SET name = ?, email = ?. contents = ? WHERE id = ?",
 		inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getId());
+	}
+
+	@Override
+	public Question getQuestion(int id, int categoryId) {
+		String sql = "SELECT * FROM questions WHERE id = ? AND categoryId = ?";
+		Map<String, Object> result = jdbcTemplate.queryForMap(sql, id, categoryId);
+		Question question = new Question();
+		question.setId((int)result.get("id"));
+		question.setCategoryId((int)result.get("categoryId"));
+		question.setQuestionContent((String)result.get("questionContent"));
+		question.setAnswer((String)result.get("answer"));
+		question.setExplanation((String)result.get("explanation"));
+		question.setChoice1((String)result.get("choice1"));
+		question.setChoice2((String)result.get("choice2"));
+		question.setChoice3((String)result.get("choice3"));
+		question.setChoice4((String)result.get("choice4"));
+		
+		return question;
 	}
 
 }
