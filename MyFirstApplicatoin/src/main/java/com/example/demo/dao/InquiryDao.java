@@ -13,7 +13,7 @@ public interface InquiryDao {
 	
 	List<Inquiry> getAll();
 	
-	Question getQuestion(int id, int categoryId);
+	Question getQuestion(int categoryId, int questionId);
 
 }
 

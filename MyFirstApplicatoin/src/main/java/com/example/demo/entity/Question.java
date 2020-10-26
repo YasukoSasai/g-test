@@ -2,8 +2,9 @@ package com.example.demo.entity;
 
 public class Question {
 	
-	private int id;
+	private int uId;
 	private int categoryId;
+	private int questionId;
 	private String questionContent;
 	private String answer;
 	private String explanation;
@@ -14,60 +15,87 @@ public class Question {
 	
 	public Question() {
 	}
-	
-	public int getId() {
-		return id;
+
+	public int getuId() {
+		return uId;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setuId(int uId) {
+		this.uId = uId;
 	}
+
 	public int getCategoryId() {
 		return categoryId;
 	}
+
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
 	public String getQuestionContent() {
 		return questionContent;
 	}
+
 	public void setQuestionContent(String questionContent) {
 		this.questionContent = questionContent;
 	}
+
 	public String getAnswer() {
 		return answer;
 	}
+
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+
 	public String getExplanation() {
 		return explanation;
 	}
+
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
+
 	public String getChoice1() {
 		return choice1;
 	}
+
 	public void setChoice1(String choice1) {
 		this.choice1 = choice1;
 	}
+
 	public String getChoice2() {
 		return choice2;
 	}
+
 	public void setChoice2(String choice2) {
 		this.choice2 = choice2;
 	}
+
 	public String getChoice3() {
 		return choice3;
 	}
+
 	public void setChoice3(String choice3) {
 		this.choice3 = choice3;
 	}
+
 	public String getChoice4() {
 		return choice4;
 	}
+
 	public void setChoice4(String choice4) {
 		this.choice4 = choice4;
 	}
+	
+	
 	
 }

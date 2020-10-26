@@ -13,6 +13,6 @@ public interface InquiryService {
 	
 	List<Inquiry> getAll();
 	
-	Question getQuestion(int id, int categoryId);
+	Question getQuestion(int categoryId, int questionId);
 
 }

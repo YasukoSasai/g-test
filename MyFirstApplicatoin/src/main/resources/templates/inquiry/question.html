@@ -6,16 +6,18 @@
 </head>
 <body>
 <h1 th:text="${title}">title</h1>
+
 <div th:object="${question}">
-	<p th:text="*{id}"></p>
-    <p th:text="*{categoryId}"></p>
-	<p th:text="*{questionContent}"></p>
-	<p th:text="*{answer}"></p>
-	<p th:text="*{explanation}"></p>
-	<p th:text="*{choice1}"></p>
-	<p th:text="*{choice2}"></p>
-	<p th:text="*{choice3}"></p>
-	<p th:text="*{choice4}"></p>
+	<p th:text="'uId: ' + *{uId}"></p>
+	<p th:text="'categoryId: ' + *{categoryId}"></p>
+	<p th:text="'questionId: ' + *{questionId}"></p>
+	<p th:text="'questionContent: ' + *{questionContent}"></p>
+	<p th:text="'answer: ' + *{answer}"></p>
+	<p th:text="'explanation: ' + *{explanation}"></p>
+	<p th:text="'choice1: ' + *{choice1}"></p>
+	<p th:text="'choice2: ' + *{choice2}"></p>
+	<p th:text="'choice3: ' + *{choice3}"></p>
+	<p th:text="'choice4: ' + *{choice4}"></p>
 </div>
 </body>
 </html>

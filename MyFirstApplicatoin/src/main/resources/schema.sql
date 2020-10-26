@@ -10,8 +10,9 @@ CREATE TABLE inquiry
 
 CREATE TABLE questions
 (
-   id INT NOT NULL,
+   uId INT NOT NULL AUTO_INCREMENT,
    categoryId INT NOT NULL,
+   questionId INT NOT NULL,
    questionContent VARCHAR(1000) NOT NULL,
    answer VARCHAR(1000) NOT NULL,
    explanation VARCHAR(1000) NOT NULL,
@@ -19,5 +20,5 @@ CREATE TABLE questions
    choice2 VARCHAR(1000) NOT NULL,
    choice3 VARCHAR(1000) NOT NULL,
    choice4 VARCHAR(1000) NOT NULL,
-   PRIMARY KEY(id)
+   PRIMARY KEY(uId)
 );

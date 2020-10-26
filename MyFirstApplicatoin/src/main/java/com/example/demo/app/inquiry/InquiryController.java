@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -84,9 +85,11 @@ public class InquiryController {
 		return "redirect:/inquiry/form";	
 	}	
 	
-	@GetMapping("question")
-	public String question(Model model) {
-		Question question = inquiryService.getQuestion(1, 1);
+	@GetMapping("question/{categoryId}/{questionId}")
+	public String question(Model model, 
+			@PathVariable("categoryId") int categoryId, 
+			@PathVariable("questionId") int questionId) {
+		Question question = inquiryService.getQuestion(categoryId, questionId);
 		model.addAttribute("question", question);
 		model.addAttribute("title", "Question Page");
 		return "inquiry/question";

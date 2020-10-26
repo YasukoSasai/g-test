@@ -55,12 +55,13 @@ public class InquiryDaoImpl implements InquiryDao {
 	}
 
 	@Override
-	public Question getQuestion(int id, int categoryId) {
-		String sql = "SELECT * FROM questions WHERE id = ? AND categoryId = ?";
-		Map<String, Object> result = jdbcTemplate.queryForMap(sql, id, categoryId);
+	public Question getQuestion(int categoryId, int questionId) {
+		String sql = "SELECT * FROM questions WHERE categoryId = ? AND questionId = ?";
+		Map<String, Object> result = jdbcTemplate.queryForMap(sql, categoryId, questionId);
 		Question question = new Question();
-		question.setId((int)result.get("id"));
+		question.setuId((int)result.get("uId"));
 		question.setCategoryId((int)result.get("categoryId"));
+		question.setQuestionId((int)result.get("questionId"));
 		question.setQuestionContent((String)result.get("questionContent"));
 		question.setAnswer((String)result.get("answer"));
 		question.setExplanation((String)result.get("explanation"));

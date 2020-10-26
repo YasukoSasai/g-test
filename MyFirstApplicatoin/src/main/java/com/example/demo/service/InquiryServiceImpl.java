@@ -38,8 +38,8 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 
 	@Override
-	public Question getQuestion(int id, int categoryId) {
-		return dao.getQuestion(id, categoryId);
+	public Question getQuestion(int categoryId, int questionId) {
+		return dao.getQuestion(categoryId, questionId);
 	}
 
 }
