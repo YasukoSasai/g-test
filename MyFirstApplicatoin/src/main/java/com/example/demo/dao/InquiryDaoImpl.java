@@ -57,8 +57,12 @@ public class InquiryDaoImpl implements InquiryDao {
 	@Override
 	public Question getQuestion(int categoryId, int questionId) {
 		String sql = "SELECT * FROM questions WHERE categoryId = ? AND questionId = ?";
+		// SQLを実行し、データベースから値(オブジェクト)を取得
 		Map<String, Object> result = jdbcTemplate.queryForMap(sql, categoryId, questionId);
+		// questionインスタンスを作成(Entityのclass)
 		Question question = new Question();
+		
+		// questionインスタンスに値をsetする。
 		question.setuId((int)result.get("uId"));
 		question.setCategoryId((int)result.get("categoryId"));
 		question.setQuestionId((int)result.get("questionId"));
@@ -69,7 +73,8 @@ public class InquiryDaoImpl implements InquiryDao {
 		question.setChoice2((String)result.get("choice2"));
 		question.setChoice3((String)result.get("choice3"));
 		question.setChoice4((String)result.get("choice4"));
-		
+
+		//インスタンス
 		return question;
 	}
 
