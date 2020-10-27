@@ -14,10 +14,11 @@
 	<p th:text="'questionContent: ' + *{questionContent}"></p>
 	<p th:text="'answer: ' + *{answer}"></p>
 	<p th:text="'explanation: ' + *{explanation}"></p>
-	<p th:text="'choice1: ' + *{choice1}"></p>
-	<p th:text="'choice2: ' + *{choice2}"></p>
-	<p th:text="'choice3: ' + *{choice3}"></p>
-	<p th:text="'choice4: ' + *{choice4}"></p>
+	
+	<button th:text="'choice1: ' + *{choice1}"></button><br>
+	<button th:text="'choice2: ' + *{choice2}"></button><br>
+	<button th:text="'choice3: ' + *{choice3}"></button><br>
+	<button th:text="'choice4: ' + *{choice4}"></button><br>
 	
 	<div th:if="${nextButtonFlag}">
 		<a th:href="@{'/inquiry/question/1/' + *{questionId + 1}}">
@@ -31,6 +32,13 @@
 		</a>
 	</div>
 </div>
+
+<script>
+function MyFunction1(text) {
+	alert(text);
+}
+</script>
+
 
 </body>
 </html>

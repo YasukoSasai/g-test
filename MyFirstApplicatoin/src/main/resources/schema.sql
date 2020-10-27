@@ -22,3 +22,17 @@ CREATE TABLE questions
    choice4 VARCHAR(1000) NOT NULL,
    PRIMARY KEY(uId)
 );
+
+
+CREATE TABLE gQuestions
+(
+   questionNumber INT NOT NULL,
+   question VARCHAR(1000) NOT NULL,
+   choice1 VARCHAR(1000) NOT NULL,
+   choice2 VARCHAR(1000) NOT NULL,
+   choice3 VARCHAR(1000) NOT NULL,
+   choice4 VARCHAR(1000) NOT NULL,
+   answer INT(1000) NOT NULL,
+   explanation VARCHAR(1000) NOT NULL,
+   PRIMARY KEY(questionNumber)
+);

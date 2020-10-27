@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.InquiryDao;
+import com.example.demo.entity.GQuestion;
 import com.example.demo.entity.Inquiry;
 import com.example.demo.entity.Question;
 
@@ -40,6 +41,16 @@ public class InquiryServiceImpl implements InquiryService {
 	@Override
 	public Question getQuestion(int categoryId, int questionId) {
 		return dao.getQuestion(categoryId, questionId);
+	}
+
+	@Override
+	public List<Question> getCategory(int categoryId) {
+		return dao.getCategory(categoryId);
+	}
+
+	@Override
+	public List<GQuestion> getGQuestions() {
+		return dao.getGQuestions();
 	}
 
 }

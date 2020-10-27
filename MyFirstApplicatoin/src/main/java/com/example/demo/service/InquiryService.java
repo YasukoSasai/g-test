@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.entity.GQuestion;
 import com.example.demo.entity.Inquiry;
 import com.example.demo.entity.Question;
 
@@ -14,5 +15,9 @@ public interface InquiryService {
 	List<Inquiry> getAll();
 	
 	Question getQuestion(int categoryId, int questionId);
+	
+	List<Question> getCategory(int categoryId);
+	
+	List<GQuestion> getGQuestions();
 
 }

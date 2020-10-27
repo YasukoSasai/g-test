@@ -2,6 +2,7 @@ package com.example.demo.dao;
 
 import java.util.List;
 
+import com.example.demo.entity.GQuestion;
 import com.example.demo.entity.Inquiry;
 import com.example.demo.entity.Question;
 
@@ -15,6 +16,9 @@ public interface InquiryDao {
 	
 	Question getQuestion(int categoryId, int questionId);
 
+	List<Question> getCategory(int categoryId);
+	
+	List<GQuestion> getGQuestions();
 }
 
 
