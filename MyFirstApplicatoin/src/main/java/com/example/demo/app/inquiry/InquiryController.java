@@ -89,9 +89,18 @@ public class InquiryController {
 	public String question(Model model, 
 			@PathVariable("categoryId") int categoryId, 
 			@PathVariable("questionId") int questionId) {
+		boolean nextButtonFlag = true;
 		Question question = inquiryService.getQuestion(categoryId, questionId);
 		model.addAttribute("question", question);
 		model.addAttribute("title", "Question Page");
+		
+		//データベースからquestionIdの最大値を取得する
+		int questionMaxId = 3;
+		if(questionMaxId == questionId) {
+			nextButtonFlag = false; 
+		}
+		model.addAttribute("nextButtonFlag", nextButtonFlag);
+		
 		return "inquiry/question";
 	}
 

@@ -18,6 +18,19 @@
 	<p th:text="'choice2: ' + *{choice2}"></p>
 	<p th:text="'choice3: ' + *{choice3}"></p>
 	<p th:text="'choice4: ' + *{choice4}"></p>
+	
+	<div th:if="${nextButtonFlag}">
+		<a th:href="@{'/inquiry/question/1/' + *{questionId + 1}}">
+			<span>次へ</span>
+		</a>
+	</div>
+	<br>
+	<div th:if="*{questionId} neq 1">
+		<a th:href="@{'/inquiry/question/1/' + *{questionId - 1}}">
+			<span>戻る</span>
+		</a>
+	</div>
 </div>
+
 </body>
 </html>
