@@ -19,6 +19,8 @@ public interface InquiryDao {
 	List<Question> getCategory(int categoryId);
 	
 	List<GQuestion> getGQuestions();
+	
+	void insertGQuestion(GQuestion gquestion);
 }
 
 

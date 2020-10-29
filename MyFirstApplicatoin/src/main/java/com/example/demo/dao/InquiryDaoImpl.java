@@ -27,8 +27,6 @@ public class InquiryDaoImpl implements InquiryDao {
 	public void insertInquiry(Inquiry inquiry) {
 		jdbcTemplate.update("INSERT INTO inquiry(name, email, contents, created) VALUES(?, ?, ?, ?)",
 				inquiry.getName(), inquiry.getEmail(), inquiry.getContents(), inquiry.getCreated());
-		
-
 	}
 
 	@Override
@@ -134,4 +132,18 @@ public class InquiryDaoImpl implements InquiryDao {
 		}
 		return list;
 	}
+
+	@Override
+	public void insertGQuestion(GQuestion gquestion) {
+		String choice1 = gquestion.getChoices()[0];
+		String choice2 = gquestion.getChoices()[1];
+		String choice3 = gquestion.getChoices()[2];
+		String choice4 = gquestion.getChoices()[3];
+		String sql = "INSERT INTO gQuestions(questionNumber, question, choice1, choice2, choice3, choice4, answer, explanation) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, 
+				gquestion.getQuestionNumber(), gquestion.getQuestion(), choice1, choice2, choice3, choice4, gquestion.getAnswer(), gquestion.getExplanation());
+	}
+	
+	
+	
 }
