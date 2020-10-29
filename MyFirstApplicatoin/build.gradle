@@ -29,3 +29,6 @@ test {
 	useJUnitPlatform()
 }
 
+bootJar {
+    launchScript()
+}
