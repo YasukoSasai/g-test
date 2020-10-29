@@ -114,9 +114,10 @@ public class InquiryDaoImpl implements InquiryDao {
 		String sql = "SELECT * FROM gQuestions";
 		// SQLを実行し、データベースから値(オブジェクト)を取得
 		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
-		// questionインスタンスを作成(Entityのclass)
+		//GQuestion型のオブジェクトを配列（リスト）にするための変数宣言
 		List<GQuestion> list = new ArrayList<GQuestion>();
 		for(Map<String, Object> result : resultList) {
+			// questionインスタンスを作成(Entityのclass)
 			GQuestion gQuestion = new GQuestion();
 			String[] choiceArray = new String[4];
 			choiceArray[0] = (String)result.get("choice1");
@@ -133,5 +134,4 @@ public class InquiryDaoImpl implements InquiryDao {
 		}
 		return list;
 	}
-
 }
