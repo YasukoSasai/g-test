@@ -39,6 +39,35 @@ CREATE TABLE public.gquestions (
 ALTER TABLE public.gquestions OWNER TO admin;
 
 --
+-- Name: gquestions_questionnumber_seq; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE public.gquestions_questionnumber_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.gquestions_questionnumber_seq OWNER TO admin;
+
+--
+-- Name: gquestions_questionnumber_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: admin
+--
+
+ALTER SEQUENCE public.gquestions_questionnumber_seq OWNED BY public.gquestions.questionnumber;
+
+
+--
+-- Name: gquestions questionnumber; Type: DEFAULT; Schema: public; Owner: admin
+--
+
+ALTER TABLE ONLY public.gquestions ALTER COLUMN questionnumber SET DEFAULT nextval('public.gquestions_questionnumber_seq'::regclass);
+
+
+--
 -- Data for Name: gquestions; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
@@ -55,7 +84,21 @@ COPY public.gquestions (questionnumber, question, choice1, choice2, choice3, cho
 10	121	321	131321321	1313	13123	31312	131
 11	1231	123	123	1231	1231	1	132132
 12	sfss	sgsg	sfsf	ffssf	sgsdg	2	sdfa
+13	asdasda	asda	asdasd	asdaasd	1	2	1231
+14	123	123	123	123	123	2	123
+15	123	123	123	123	123	2	123
+16	1	11	123	121	1	2	123
+17	1	11	123	121	1	2	123
+18	123	123	123	123	123	1	tttttttttttttttt
+19	asdsa	asdada	asdasdas	asdasda	asdada	1	asdadsadad
 \.
+
+
+--
+-- Name: gquestions_questionnumber_seq; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('public.gquestions_questionnumber_seq', 19, true);
 
 
 --

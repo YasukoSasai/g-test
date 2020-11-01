@@ -139,9 +139,17 @@ public class InquiryDaoImpl implements InquiryDao {
 		String choice2 = gquestion.getChoices()[1];
 		String choice3 = gquestion.getChoices()[2];
 		String choice4 = gquestion.getChoices()[3];
-		String sql = "INSERT INTO gQuestions(questionNumber, question, choice1, choice2, choice3, choice4, answer, explanation) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO gQuestions(question, choice1, choice2, choice3, choice4, answer, explanation) VALUES(?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, 
-				gquestion.getQuestionNumber(), gquestion.getQuestion(), choice1, choice2, choice3, choice4, gquestion.getAnswer(), gquestion.getExplanation());
+				gquestion.getQuestion(), choice1, choice2, choice3, choice4, gquestion.getAnswer(), gquestion.getExplanation());
+	}
+
+	@Override
+	public void deleteGQuestion(int questionNumber) {
+		// questionNumberを指定して削除
+		jdbcTemplate.update("DELETE FROM gQuestions WHERE questionNumber = ?", questionNumber);
+		// 自動連番の設定値をgQuestionsテーブルのレコード数の最大値にセットする。
+		jdbcTemplate.execute("SELECT setval('gquestions_questionnumber_seq', (SELECT MAX(questionnumber) FROM gquestions));");
 	}
 	
 	

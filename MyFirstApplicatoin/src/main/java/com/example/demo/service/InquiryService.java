@@ -22,4 +22,5 @@ public interface InquiryService {
 	
 	void insertGQuestion(GQuestion gquestion);
 
+	void deleteGQuestion(int questionNumber);
 }

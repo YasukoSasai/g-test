@@ -58,4 +58,10 @@ public class InquiryServiceImpl implements InquiryService {
 		dao.insertGQuestion(gquestion);
 	}
 
+	@Override
+	public void deleteGQuestion(int questionNumber) {
+		dao.deleteGQuestion(questionNumber);
+		
+	}
+
 }
