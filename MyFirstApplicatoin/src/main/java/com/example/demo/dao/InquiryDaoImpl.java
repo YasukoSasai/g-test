@@ -109,7 +109,7 @@ public class InquiryDaoImpl implements InquiryDao {
 
 	@Override
 	public List<GQuestion> getGQuestions() {
-		String sql = "SELECT * FROM gQuestions";
+		String sql = "SELECT * FROM gQuestions ORDER BY questionNumber ASC;";
 		// SQLを実行し、データベースから値(オブジェクト)を取得
 		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 		//GQuestion型のオブジェクトを配列（リスト）にするための変数宣言
@@ -152,6 +152,14 @@ public class InquiryDaoImpl implements InquiryDao {
 		jdbcTemplate.execute("SELECT setval('gquestions_questionnumber_seq', (SELECT MAX(questionnumber) FROM gquestions));");
 	}
 	
-	
-	
+	@Override
+	public void updateGQuestion(GQuestion gquestion) {
+		String choice1 = gquestion.getChoices()[0];
+		String choice2 = gquestion.getChoices()[1];
+		String choice3 = gquestion.getChoices()[2];
+		String choice4 = gquestion.getChoices()[3];
+		String sql = "UPDATE gQuestions SET question='?', choice1='?', choice2='?', choice3='?', choice4='?', answer='?', explanation='?'  WHERE questionNumber=?;";
+		jdbcTemplate.update(sql, 
+				gquestion.getQuestion(), choice1, choice2, choice3, choice4, gquestion.getAnswer(), gquestion.getExplanation());
+	}
 }

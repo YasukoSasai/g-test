@@ -65,4 +65,12 @@ private final InquiryService inquiryService;
     public void deleteGQuestion( @PathVariable("questionNumber") int questionNumber ) {
 		inquiryService.deleteGQuestion(questionNumber);
     }
+	
+	@CrossOrigin
+	@PostMapping
+	@RequestMapping("/update_gQuestions")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void updateGQuestion(@RequestBody GQuestion gquestion) {
+		inquiryService.updateGQuestion(gquestion);
+    }
 }
