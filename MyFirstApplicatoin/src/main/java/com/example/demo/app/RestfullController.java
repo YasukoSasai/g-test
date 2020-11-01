@@ -57,9 +57,12 @@ private final InquiryService inquiryService;
 	@RequestMapping("/insert_gQuestions")
     @ResponseStatus(HttpStatus.CREATED)
     public void insertGQuestion(@RequestBody GQuestion gquestion) {
-		System.out.println("test");
 		inquiryService.insertGQuestion(gquestion);
     }
 	
-	
+	@CrossOrigin
+	@GetMapping("/delete_gQuestions/{questionNumber}")
+    public void deleteGQuestion( @PathVariable("questionNumber") int questionNumber ) {
+		inquiryService.deleteGQuestion(questionNumber);
+    }
 }

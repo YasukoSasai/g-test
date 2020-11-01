@@ -21,6 +21,8 @@ public interface InquiryDao {
 	List<GQuestion> getGQuestions();
 	
 	void insertGQuestion(GQuestion gquestion);
+	
+	void deleteGQuestion(int questionNumber);
 }
 
 
