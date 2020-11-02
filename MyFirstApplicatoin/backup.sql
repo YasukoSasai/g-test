@@ -1,17 +1,50 @@
-INSERT INTO inquiry(name, email, contents, created)
-VALUES('Ethan', 'sample@example.com', 'Hello', '2019-11-12 08:34:19');
-INSERT INTO inquiry(name, email, contents, created)
-VALUES('Emma', 'sample2@example.com', 'GoodMorning', '2019-12-18 12:10:52');
-INSERT INTO inquiry(name, email, contents, created)
-VALUES('William', 'sample3@example.com', 'GoodEvening', '2019-12-18 15:10:52');
-
-INSERT INTO questions(categoryId, questionId, questionContent, answer, explanation, choice1, choice2, choice3, choice4)
-VALUES(1, 1, 'aaaaaaa?', 'choice2', 'bbbbbbbbbb.', 'jjjjjjj', 'kkkkkkkkk', 'rrrrrrrrrr', 'ooooooooo');
-INSERT INTO questions(categoryId, questionId, questionContent, answer, explanation, choice1, choice2, choice3, choice4)
-VALUES(1, 2, 'aaaaaaa?', 'choice2', 'bbbbbbbbbb.', 'jjjjjjj', 'kkkkkkkkk', 'rrrrrrrrrr', 'ooooooooo');
-INSERT INTO questions(categoryId, questionId, questionContent, answer, explanation, choice1, choice2, choice3, choice4)
-VALUES(1, 3, 'aaaaaaa?', 'choice2', 'bbbbbbbbbb.', 'jjjjjjj', 'kkkkkkkkk', 'rrrrrrrrrr', 'ooooooooo');
-
+;              
+CREATE USER IF NOT EXISTS "SA" SALT '038a8ab5adb3f8be' HASH 'cb5ec51bb278c9608f2000d9679f5ee269fc94d34281eb37e530dfdb5cc53e3c' ADMIN;          
+CREATE SEQUENCE "PUBLIC"."SYSTEM_SEQUENCE_AA933CA6_D92A_4929_ABF5_25D7DD7A2F23" START WITH 4 BELONGS_TO_TABLE; 
+CREATE SEQUENCE "PUBLIC"."SYSTEM_SEQUENCE_E059121C_7AE3_40A5_A903_BFA808B68134" START WITH 4 BELONGS_TO_TABLE; 
+CREATE MEMORY TABLE "PUBLIC"."INQUIRY"(
+    "ID" INT DEFAULT NEXT VALUE FOR "PUBLIC"."SYSTEM_SEQUENCE_AA933CA6_D92A_4929_ABF5_25D7DD7A2F23" NOT NULL NULL_TO_DEFAULT SEQUENCE "PUBLIC"."SYSTEM_SEQUENCE_AA933CA6_D92A_4929_ABF5_25D7DD7A2F23",
+    "NAME" VARCHAR(100) NOT NULL,
+    "EMAIL" VARCHAR(100) NOT NULL,
+    "CONTENTS" VARCHAR(500) NOT NULL,
+    "CREATED" DATETIME NOT NULL
+);   
+ALTER TABLE "PUBLIC"."INQUIRY" ADD CONSTRAINT "PUBLIC"."CONSTRAINT_9" PRIMARY KEY("ID");       
+-- 3 +/- SELECT COUNT(*) FROM PUBLIC.INQUIRY;  
+INSERT INTO "PUBLIC"."INQUIRY" VALUES
+(1, 'Ethan', 'sample@example.com', 'Hello', TIMESTAMP '2019-11-12 08:34:19'),
+(2, 'Emma', 'sample2@example.com', 'GoodMorning', TIMESTAMP '2019-12-18 12:10:52'),
+(3, 'William', 'sample3@example.com', 'GoodEvening', TIMESTAMP '2019-12-18 15:10:52'); 
+CREATE MEMORY TABLE "PUBLIC"."QUESTIONS"(
+    "UID" INT DEFAULT NEXT VALUE FOR "PUBLIC"."SYSTEM_SEQUENCE_E059121C_7AE3_40A5_A903_BFA808B68134" NOT NULL NULL_TO_DEFAULT SEQUENCE "PUBLIC"."SYSTEM_SEQUENCE_E059121C_7AE3_40A5_A903_BFA808B68134",
+    "CATEGORYID" INT NOT NULL,
+    "QUESTIONID" INT NOT NULL,
+    "QUESTIONCONTENT" VARCHAR(1000) NOT NULL,
+    "ANSWER" VARCHAR(1000) NOT NULL,
+    "EXPLANATION" VARCHAR(1000) NOT NULL,
+    "CHOICE1" VARCHAR(1000) NOT NULL,
+    "CHOICE2" VARCHAR(1000) NOT NULL,
+    "CHOICE3" VARCHAR(1000) NOT NULL,
+    "CHOICE4" VARCHAR(1000) NOT NULL
+);         
+ALTER TABLE "PUBLIC"."QUESTIONS" ADD CONSTRAINT "PUBLIC"."CONSTRAINT_3" PRIMARY KEY("UID");    
+-- 3 +/- SELECT COUNT(*) FROM PUBLIC.QUESTIONS;
+INSERT INTO "PUBLIC"."QUESTIONS" VALUES
+(1, 1, 1, 'aaaaaaa?', 'choice2', 'bbbbbbbbbb.', 'jjjjjjj', 'kkkkkkkkk', 'rrrrrrrrrr', 'ooooooooo'),
+(2, 1, 2, 'aaaaaaa?', 'choice2', 'bbbbbbbbbb.', 'jjjjjjj', 'kkkkkkkkk', 'rrrrrrrrrr', 'ooooooooo'),
+(3, 1, 3, 'aaaaaaa?', 'choice2', 'bbbbbbbbbb.', 'jjjjjjj', 'kkkkkkkkk', 'rrrrrrrrrr', 'ooooooooo');            
+CREATE MEMORY TABLE "PUBLIC"."GQUESTIONS"(
+    "QUESTIONNUMBER" INT NOT NULL,
+    "QUESTION" VARCHAR(1000) NOT NULL,
+    "CHOICE1" VARCHAR(1000) NOT NULL,
+    "CHOICE2" VARCHAR(1000) NOT NULL,
+    "CHOICE3" VARCHAR(1000) NOT NULL,
+    "CHOICE4" VARCHAR(1000) NOT NULL,
+    "ANSWER" INT NOT NULL,
+    "EXPLANATION" VARCHAR(1000) NOT NULL
+);            
+ALTER TABLE "PUBLIC"."GQUESTIONS" ADD CONSTRAINT "PUBLIC"."CONSTRAINT_F" PRIMARY KEY("QUESTIONNUMBER");        
+-- 7 +/- SELECT COUNT(*) FROM PUBLIC.GQUESTIONS;               
 INSERT INTO "PUBLIC"."GQUESTIONS" VALUES
 (1, STRINGDECODE('\uff08\u30a2\uff09\u306b\u6700\u3082\u3088\u304f\u3042\u3066\u306f\u307e\u308b\u9078\u629e\u80a2\u3092 1 \u3064\u9078\u3079\u3002\u30cb\u30e5\u30fc\u30e9\u30eb\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u306f\u9ad8\u3044\u8868\u73fe\u529b\u3092\u6301\u3064\u53cd\u9762,\u904e\u5b66\u7fd2\u3092\u3057\u3084\u3059\u3044\u3068\u3044\u3046\u6027\u8cea\u3092\u6301\u3064\u305f\u3081,\u305d\u308c\u3092\u6539\u5584\u3055\u305b\u308b\u65b9\u6cd5\u304c\u591a\u6570\u8003\u8003\u6848\u3055\u308c\u3066\u3044\u308b\u3002\u4f8b\u3048\u3070,\u5b66\u7fd2\u306e\u969b\u306b\u4e00\u90e8\u306e\u30ce\u30fc\u30c9\u3092\u7121\u52b9\u5316\u3059\u308b\uff08\u30a2\uff09,\u4e00\u90e8\u306e\u5c64\u306e\u51fa\u529b\u3092\u6b63\u898f\u5316\u3059\u308b\uff08\u30a4\uff09,\u30c7\u30fc\u30bf\u306e\u6c34\u5897\u3057\u3092\u3057\u3066\u30c7\u30fc\u30bf\u306e\u4e0d\u8db3\u3092\u88dc\u3046\uff08\u30a6\uff09,\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u30ce\u30eb\u30e0\u306b\u30da\u30ca\u30eb\u30c6\u30a3\u3092\u8ab2\u3059\uff08\u30a8\uff09\u306a\u3069\u304c\u305d\u308c\u306b\u5f53\u305f\u308b\u3002'), STRINGDECODE('\u30d0\u30c3\u30c1\u6b63\u898f\u5316'), STRINGDECODE('\u30c9\u30ed\u30c3\u30d7\u30a2\u30a6\u30c8'), STRINGDECODE('\u30c7\u30fc\u30bf\u62e1\u5f35.'), STRINGDECODE('L2\u6b63\u5247\u5316'), 1, STRINGDECODE('<p>\u6b63\u89e3\u306f2\u3067\u3042\u308b\u3002</P><br><p>\u30d0\u30c3\u30c1\u6b63\u898f\u5316\uff1a\u4e00\u90e8\u306e\u5c64\u306e\u51fa\u529b\u3092\u6b63\u898f\u5316\u3059\u308b\u3002</p><br><p>\u30c9\u30ed\u30c3\u30d7\u30a2\u30a6\u30c8\uff1a\u5b66\u7fd2\u306e\u969b\u306b\u4e00\u90e8\u306e\u30ce\u30fc\u30c9\u3092\u7121\u52b9\u5316\u3059\u308b\u3002</p><br><p>\u30c7\u30fc\u30bf\u62e1\u5f35\uff1a\u30c7\u30fc\u30bf\u306e\u6c34\u5897\u3057\u3092\u3057\u3066\u30c7\u30fc\u30bf\u306e\u4e0d\u8db3\u3092\u88dc\u3046\u3002</p><br><p>L2\u6b63\u5247\u5316\uff1a\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u30ce\u30eb\u30e0\u306b\u30da\u30ca\u30eb\u30c6\u30a3\u3092\u8ab2\u3059\u3002</p>')),
 (2, STRINGDECODE('\uff08\u30a4\uff09\u306b\u6700\u3082\u3088\u304f\u3042\u3066\u306f\u307e\u308b\u9078\u629e\u80a2\u3092 1 \u3064\u9078\u3079\u3002\u30cb\u30e5\u30fc\u30e9\u30eb\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u306f\u9ad8\u3044\u8868\u73fe\u529b\u3092\u6301\u3064\u53cd\u9762,\u904e\u5b66\u7fd2\u3092\u3057\u3084\u3059\u3044\u3068\u3044\u3046\u6027\u8cea\u3092\u6301\u3064\u305f\u3081,\u305d\u308c\u3092\u6539\u5584\u3055\u305b\u308b\u65b9\u6cd5\u304c\u591a\u6570\u8003\u8003\u6848\u3055\u308c\u3066\u3044\u308b\u3002\u4f8b\u3048\u3070,\u5b66\u7fd2\u306e\u969b\u306b\u4e00\u90e8\u306e\u30ce\u30fc\u30c9\u3092\u7121\u52b9\u5316\u3059\u308b\uff08\u30a2\uff09,\u4e00\u90e8\u306e\u5c64\u306e\u51fa\u529b\u3092\u6b63\u898f\u5316\u3059\u308b\uff08\u30a4\uff09,\u30c7\u30fc\u30bf\u306e\u6c34\u5897\u3057\u3092\u3057\u3066\u30c7\u30fc\u30bf\u306e\u4e0d\u8db3\u3092\u88dc\u3046\uff08\u30a6\uff09,\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u30ce\u30eb\u30e0\u306b\u30da\u30ca\u30eb\u30c6\u30a3\u3092\u8ab2\u3059\uff08\u30a8\uff09\u306a\u3069\u304c\u305d\u308c\u306b\u5f53\u305f\u308b\u3002'), STRINGDECODE('\u30d0\u30c3\u30c1\u6b63\u898f\u5316'), STRINGDECODE('\u30c9\u30ed\u30c3\u30d7\u30a2\u30a6\u30c8'), STRINGDECODE('\u30c7\u30fc\u30bf\u62e1\u5f35.'), STRINGDECODE('L2\u6b63\u5247\u5316'), 0, STRINGDECODE('<p>\u6b63\u89e3\u306f1\u3067\u3042\u308b\u3002</P><br><p>\u30d0\u30c3\u30c1\u6b63\u898f\u5316\uff1a\u4e00\u90e8\u306e\u5c64\u306e\u51fa\u529b\u3092\u6b63\u898f\u5316\u3059\u308b\u3002</p><br><p>\u30c9\u30ed\u30c3\u30d7\u30a2\u30a6\u30c8\uff1a\u5b66\u7fd2\u306e\u969b\u306b\u4e00\u90e8\u306e\u30ce\u30fc\u30c9\u3092\u7121\u52b9\u5316\u3059\u308b\u3002</p><br><p>\u30c7\u30fc\u30bf\u62e1\u5f35\uff1a\u30c7\u30fc\u30bf\u306e\u6c34\u5897\u3057\u3092\u3057\u3066\u30c7\u30fc\u30bf\u306e\u4e0d\u8db3\u3092\u88dc\u3046\u3002</p><br><p>L2\u6b63\u5247\u5316\uff1a\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u30ce\u30eb\u30e0\u306b\u30da\u30ca\u30eb\u30c6\u30a3\u3092\u8ab2\u3059\u3002</p>')),
