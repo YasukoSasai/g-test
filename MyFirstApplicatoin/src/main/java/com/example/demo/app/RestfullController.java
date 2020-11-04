@@ -73,4 +73,11 @@ private final InquiryService inquiryService;
     public void updateGQuestion(@RequestBody GQuestion gquestion) {
 		inquiryService.updateGQuestion(gquestion);
     }
+	
+	
+	@CrossOrigin
+	@GetMapping("/gQuestion1/{questionNumber}")
+    public GQuestion getGQuestion1( @PathVariable("questionNumber") int questionNumber ) {
+		return inquiryService.getGQuestion1(questionNumber);
+    }
 }

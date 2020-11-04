@@ -69,4 +69,9 @@ public class InquiryServiceImpl implements InquiryService {
 		dao.updateGQuestion(gquestion);
 	}
 
+	@Override
+	public GQuestion getGQuestion1(int questionNumber) {
+		return dao.getGQuestion1(questionNumber);
+	}
+
 }

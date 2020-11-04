@@ -166,4 +166,25 @@ public class InquiryDaoImpl implements InquiryDao {
 		jdbcTemplate.update(sql, 
 				gquestion.getQuestion(), choice1, choice2, choice3, choice4, gquestion.getAnswer(), gquestion.getExplanation(), gquestion.getQuestionNumber());
 	}
+
+	@Override
+	public GQuestion getGQuestion1(int questionNumber) {
+		System.out.println("aaaaaaaaaaa");
+		String sql = "select * from gquestions where questionnumber = ?;";
+		Map<String, Object> result = jdbcTemplate.queryForMap(sql, questionNumber);
+		GQuestion gQuestion = new GQuestion();
+		String[] choiceArray = new String[4];
+		choiceArray[0] = (String)result.get("choice1");
+		choiceArray[1] = (String)result.get("choice2");
+		choiceArray[2] = (String)result.get("choice3");
+		choiceArray[3] = (String)result.get("choice4");
+		gQuestion.setQuestionNumber((int)result.get("questionNumber"));
+		gQuestion.setQuestion((String)result.get("question"));
+		gQuestion.setChoices(choiceArray);
+		gQuestion.setAnswer((int)result.get("answer"));
+		gQuestion.setExplanation((String)result.get("explanation"));
+		return gQuestion;
+	}
+	
+	
 }

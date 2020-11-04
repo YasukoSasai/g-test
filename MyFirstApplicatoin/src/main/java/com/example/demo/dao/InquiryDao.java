@@ -25,6 +25,10 @@ public interface InquiryDao {
 	void deleteGQuestion(int questionNumber);
 	
 	void updateGQuestion(GQuestion gquestion);
+	
+	GQuestion getGQuestion1(int questionNumber);
+	
+	
 }
 
 
