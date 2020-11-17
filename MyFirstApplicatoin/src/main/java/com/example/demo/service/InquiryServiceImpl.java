@@ -48,6 +48,7 @@ public class InquiryServiceImpl implements InquiryService {
 		return dao.getCategory(categoryId);
 	}
 
+//	Gquestion用
 	@Override
 	public List<GQuestion> getGQuestions() {
 		return dao.getGQuestions();

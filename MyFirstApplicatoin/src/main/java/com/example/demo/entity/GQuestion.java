@@ -48,10 +48,5 @@ public class GQuestion {
 
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
-	}
-	
-	
-
-	
-	
+	}	
 }

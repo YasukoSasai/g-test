@@ -18,6 +18,8 @@ public interface InquiryService {
 	
 	List<Question> getCategory(int categoryId);
 	
+	
+//	GQuestion用
 	List<GQuestion> getGQuestions();
 	
 	void insertGQuestion(GQuestion gquestion);

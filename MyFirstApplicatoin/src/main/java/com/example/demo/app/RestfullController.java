@@ -43,7 +43,7 @@ private final InquiryService inquiryService;
 		List<Question> list = inquiryService.getCategory(categoryId);
         return list;
     }
-	//これだけ実行
+	//GQuestion用
 	//[説明]https://qiita.com/NagaokaKenichi/items/0647c30ef596cedf4bf2
 	@CrossOrigin
 	@GetMapping("/g_questions")
